@@ -13,7 +13,7 @@ class NoteListCreate(generics.ListCreateAPIView):
     # Get the notes of the user if the user is authenticated
     def get_queryset(self):
         user = self.request.user
-        return Note.objects.filter(author=user)
+        return Note.objects.filter(author=user).order_by('-created_at')
     
     # Create a note if the user is authenticated
     def perform_create(self, serializer):
